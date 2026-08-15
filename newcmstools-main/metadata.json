@@ -1,6 +1,0 @@
-{
-  "name": "AdPush CMS - Cloudflare D1 & R2 Advertising Platform",
-  "description": "Professional Advertising Push CMS designed for Cloudflare Pages, Cloudflare D1 database, and Cloudflare R2 storage with full ad push delivery, analytics, ad rotation, and embeddable ad-loader.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

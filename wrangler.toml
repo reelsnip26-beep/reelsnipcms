@@ -1,0 +1,5 @@
+name = "ads-push-cms"
+pages_build_output_dir = "."
+
+[vars]
+ENVIRONMENT = "production"

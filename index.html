@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads Push CMS | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-ad"></i>
+                <span>AdsPush CMS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active" data-view="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="#" data-view="ads"><i class="fas fa-layer-group"></i> Ads Management</a>
+                <a href="#" data-view="campaigns"><i class="fas fa-bullhorn"></i> Campaigns</a>
+                <a href="#" data-view="media"><i class="fas fa-photo-video"></i> Media Library</a>
+                <a href="#" data-view="analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                <a href="#" data-view="settings"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="user-profile">
+                    <span id="current-date"></span>
+                    <div class="avatar">Admin</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <div id="dashboard-view" class="view">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Ads</h3>
+                        <p id="stat-total-ads">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Ads</h3>
+                        <p id="stat-active-ads">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Impressions</h3>
+                        <p id="stat-impressions">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Avg. CTR</h3>
+                        <p id="stat-ctr">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ads Management -->
+            <div id="ads-view" class="view hidden">
+                <div class="action-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="ad-search" placeholder="Search ads or campaigns...">
+                    </div>
+                    <div class="filters">
+                        <select id="filter-type">
+                            <option value="all">All Types</option>
+                            <option value="image">Image</option>
+                            <option value="video">Video</option>
+                        </select>
+                        <select id="filter-status">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="paused">Paused</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                        <button id="btn-add-ad" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add New Ad
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="ads-table">
+                        <thead>
+                            <tr>
+                                <th>Preview</th>
+                                <th>Ad Details</th>
+                                <th>Type</th>
+                                <th>Schedule</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Performance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ads-body">
+                            <!-- JS will inject rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Ad Modal -->
+    <div id="ad-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Create New Ad</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="ad-form">
+                <input type="hidden" id="ad-id">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Ad Title*</label>
+                        <input type="text" id="title" required placeholder="e.g. Summer Promo">
+                    </div>
+                    <div class="form-group">
+                        <label>Campaign Name*</label>
+                        <input type="text" id="campaign" required placeholder="e.g. Q3 Sales">
+                    </div>
+                    <div class="form-group">
+                        <label>Ad Type</label>
+                        <select id="type">
+                            <option value="image">Image Ad</option>
+                            <option value="video">Video Ad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Media URL*</label>
+                        <input type="url" id="mediaUrl" required placeholder="https://...">
+                    </div>
+                    <div class="form-group" id="poster-group">
+                        <label>Video Poster URL (Optional)</label>
+                        <input type="url" id="posterUrl" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Destination URL*</label>
+                        <input type="url" id="destinationUrl" required placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>CTA Text</label>
+                        <input type="text" id="cta" placeholder="Shop Now">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="status">
+                            <option value="active">Active</option>
+                            <option value="paused">Paused</option>
+                            <option value="draft">Draft</option>
+                            <option value="scheduled">Scheduled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date" id="endDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Priority (1-10)</label>
+                        <input type="number" id="priority" min="1" max="10" value="1">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea id="description" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div class="media-preview-container">
+                    <label>Live Preview</label>
+                    <div id="media-preview" class="preview-box">
+                        <p>Enter Media URL to see preview</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Ad</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

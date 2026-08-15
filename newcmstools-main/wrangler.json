@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "adpush-cloudflare-cms",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "advertising-db",
+      "database_id": "YOUR_D1_DATABASE_ID"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "adpush-media-bucket"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "DEFAULT_TIMEZONE": "UTC",
+    "ALLOW_ANONYMOUS_IMPRESSIONS": "true",
+    "ADMIN_SESSION_SECRET": "super-secure-random-key-change-me",
+    "ADMIN_PASSWORD_HASH": "CHANGE_IN_CLOUDFLARE_PAGES_VARIABLES",
+    "R2_PUBLIC_DOMAIN": "https://media.yourdomain.com"
+  }
+}
